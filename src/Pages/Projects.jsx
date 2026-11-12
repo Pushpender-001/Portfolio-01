@@ -3,6 +3,7 @@ import { motion, MotionConfig } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import rps from "../assets/rps.jpg";
 import rps2 from "../assets/rps2.png";
+import rps3 from "../assets/rps3.png"
 
 // import rps from "../assets/rps.png";  // import your project images like this
 
@@ -20,13 +21,13 @@ const projects = [
   },
   {
     id: 2,
-    title: "AI Interview Report",
+    title: "Laxmi Motor Car Driving School",
     description:
-      "Upload a resume and job description to get AI-generated questions, skill gaps and a prep plan.",
-    tags: ["React", "Node", "MongoDB"],
+      "Driving School Website in Faridabad with 98% accuracy of learning driving in first time",
+    tags: ["React", "TailwindCss"],
     image: rps2,
-    live: "https://your-live-demo-link.com",
-    code: "https://github.com/Pushpender-001/your-repo",
+    live: "https://laxmi-motor.netlify.app",
+    code: "https://github.com/Pushpender-001/Laxmi-Motor",
   },
   {
     id: 3,
@@ -34,9 +35,9 @@ const projects = [
     description:
       "A responsive personal portfolio with animated sections and a working contact form.",
     tags: ["React", "Tailwind"],
-    image: null,
-    live: "https://your-live-demo-link.com",
-    code: "https://github.com/Pushpender-001/your-repo",
+    image: rps3,
+    live: "https://pushpender-portfolio-01.netlify.app",
+    code: "https://github.com/Pushpender-001/Portfolio-01",
   },
 ];
 
