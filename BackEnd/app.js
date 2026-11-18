@@ -1,16 +1,27 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-const rateLimit = require("express-rate-limit");
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import nodemailer from "nodemailer";
+import rateLimit from "express-rate-limit";
 
 const app = express();
 
-app.use(cors()); // later, restrict to your portfolio's URL
+// 1. Needed on Vercel so rate limiting sees the real visitor IP
+app.set("trust proxy", 1);
+
+// 2. Allow only your frontend (add your real URL; keep localhost for testing)
+app.use(
+  cors({
+    origin: ["https://pushpender-portfolio-01-48fj.vercel.app/"],
+  })
+);
 app.use(express.json());
 
 // Max 5 messages per 15 minutes per IP (stops spam)
-app.use("/api/contact", rateLimit({ windowMs: 15 * 60 * 1000, max: 5 }));
+app.use(
+  "/api/contact",
+  rateLimit({ windowMs: 15 * 60 * 1000, limit: 5 })
+);
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -19,6 +30,9 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
+
+// Optional: lets you check the deploy works by opening the URL
+app.get("/", (req, res) => res.send("Backend is running"));
 
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body;
@@ -30,8 +44,8 @@ app.post("/api/contact", async (req, res) => {
   try {
     await transporter.sendMail({
       from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER, // message comes to your own inbox
-      replyTo: email, // hitting "Reply" answers the visitor
+      to: process.env.EMAIL_USER,
+      replyTo: email,
       subject: `New message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
     });
@@ -43,5 +57,11 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// 3. Only start a server locally; Vercel runs the app itself
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// 4. Vercel needs the app exported
+export default app;
