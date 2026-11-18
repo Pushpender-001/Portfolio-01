@@ -94,14 +94,25 @@ const Contact = () => {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: send `form` to your backend or a service like EmailJS here
-    console.log(form);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("http://localhost:5000/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (!res.ok) throw new Error("Failed");
+
     setSent(true);
     setForm({ name: "", email: "", message: "" });
     setTimeout(() => setSent(false), 3000);
-  };
+  } catch (err) {
+    alert("Something went wrong. Please try again.");
+  }
+};
 
   return (
     // reducedMotion="user": animations (including the float) switch off

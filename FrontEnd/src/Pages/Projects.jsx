@@ -3,7 +3,7 @@ import { motion, MotionConfig } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import rps from "../assets/rps.jpg";
 import rps2 from "../assets/rps2.png";
-import rps3 from "../assets/rps3.png"
+import rps3 from "../assets/rps3.png";
 
 // import rps from "../assets/rps.png";  // import your project images like this
 
@@ -13,7 +13,7 @@ const projects = [
     id: 1,
     title: "Rock, Paper, Scissors",
     description:
-      "A sleek, fully interactive browser game built for a seamless user experience.",
+      "A sleek, responsive, and interactive browser-based game featuring intuitive controls, smooth gameplay, and a user-friendly interface for an engaging gaming experience.",
     tags: ["HTML", "CSS", "JS"],
     image: rps, // replace with: rps
     live: "https://rock-paper-scissor-pushpender.netlify.app",
@@ -23,7 +23,7 @@ const projects = [
     id: 2,
     title: "Laxmi Motor Car Driving School",
     description:
-      "Driving School Website in Faridabad with 98% accuracy of learning driving in first time",
+      "A responsive driving school website in Faridabad featuring professional driving courses, expert training, and learner-focused services, with a claimed 98% first-time learning success rate.",
     tags: ["React", "TailwindCss"],
     image: rps2,
     live: "https://laxmi-motor.netlify.app",
@@ -31,13 +31,13 @@ const projects = [
   },
   {
     id: 3,
-    title: "Portfolio Website",
+    title: "Faillure Builder",
     description:
-      "A responsive personal portfolio with animated sections and a working contact form.",
+      "A responsive architecture website showcasing modern residential and commercial projects, featuring detailed project information, completed buildings, and upcoming developments.",
     tags: ["React", "Tailwind"],
     image: rps3,
-    live: "https://pushpender-portfolio-01.netlify.app",
-    code: "https://github.com/Pushpender-001/Portfolio-01",
+    live: "https://faillure.netlify.app/",
+    code: "https://github.com/Pushpender-001/Failure",
   },
 ];
 
