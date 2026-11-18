@@ -22,8 +22,6 @@ const corsOptions = {
 
 // CORS must come before the rate limiter and the routes
 app.use(cors(corsOptions));
-// Answer preflight (OPTIONS) requests explicitly
-app.options("*", cors(corsOptions));
 
 app.use(express.json());
 
