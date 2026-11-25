@@ -72,7 +72,7 @@ app.post("/api/contact", async (req, res) => {
 
 // 3. Only start a server locally; Vercel runs the app itself
 if (!process.env.VERCEL) {
-  const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || https://port-backend-01-y827.vercel.app;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
